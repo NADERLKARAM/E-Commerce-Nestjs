@@ -2,7 +2,7 @@ import { UpdatePasswordDto } from './Dtos/updatePassword.dto';
 import { UpdateUserDto } from './Dtos/update.user.dto';
 import { CreateUserDto } from './Dtos/create.user.dto';
 import { User } from './user.entity';
-import { Injectable, NotFoundException} from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt'
@@ -18,6 +18,15 @@ export class UserService {
     //@route user/createUser
     async createUser(createUserDto: CreateUserDto): Promise<User>{
         const {username, email, password} = createUserDto;
+
+        
+    // Check if the email already exists in the database
+    const existingUser = await this.userRepository.findOne({ where: { email } });
+
+    if (existingUser) {
+      throw new ConflictException('Email already exists');
+    }
+        
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = this.userRepository.create({
             username,
