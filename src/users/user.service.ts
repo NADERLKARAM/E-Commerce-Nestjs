@@ -4,7 +4,7 @@ import { CreateUserDto } from './Dtos/create.user.dto';
 import { User } from './user.entity';
 import { ConflictException, Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt'
 import { InvalidPasswordException } from "../filters/invalid-password.exception";
 
@@ -46,11 +46,11 @@ export class UserService {
 
     //@find one user by id
    //@route user/:id
-   async findUser(id: number): Promise<User>{
-    const user = await this.userRepository.findOneBy({id})
+   async findUser(where: FindOneOptions<User>): Promise<User>{
+    const user = await this.userRepository.findOne(where)
 
     if(!user){
-        throw new NotFoundException(`No User with this id: ${id}`)
+        throw new NotFoundException(`There isn't any user with identifier: ${where}`,)
     }
     return user;
    }
