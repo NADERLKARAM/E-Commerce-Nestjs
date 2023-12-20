@@ -21,7 +21,7 @@ export class UserController {
 
     @Get(':id')
     async findUser(@Param('id') id: number): Promise<User>{
-        return this.userService.findUser(id);
+        return this.userService.findUser({where:{id}});
     }
 
     @Delete(':id')
