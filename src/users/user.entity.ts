@@ -1,4 +1,6 @@
+import { Role } from "src/auth/common/guards/role.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
 
 @Entity()
 export class User{
@@ -15,5 +17,26 @@ export class User{
 
     @Column()
     password: string;
+
+   @Column({
+    type: 'enum',
+    enum: Role,
+    default: [Role.User],
+    array: true
+  })
+  roles: [];
+
+
+  @Column({ nullable: true })
+  resetCode: string;
+
+  @Column({ nullable: true })
+  resetCodeGeneratedAt: Date;
+
+  @Column({ nullable: true })
+  resetCodeExpiration: Date;
+
+  @Column({ nullable: true })
+  passwordResetVerified: boolean;
 
 }

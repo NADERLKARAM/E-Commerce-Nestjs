@@ -2,12 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/user.module';
-import { APP_GUARD } from '@nestjs/core';
 import { AuthModule } from './auth/auth.module';
-import { AuthGuard } from './auth/guards/auth.guard';
+import { CommonModule } from './auth/common/common.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DatabaseModule, UsersModule, AuthModule],
-  // providers: [{  provide: APP_GUARD,useClass: AuthGuard, }],
+  imports: [ConfigModule.forRoot(), DatabaseModule, UsersModule, AuthModule , CommonModule],
 })
 export class AppModule {}

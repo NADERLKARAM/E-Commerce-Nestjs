@@ -6,7 +6,7 @@ import { ConflictException, Injectable, NotFoundException} from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt'
-import { InvalidPasswordException } from "../filters/invalid-password.exception";
+import { InvalidPasswordException } from "../auth/common/filters/invalid-password.exception";
 
 
 @Injectable()
@@ -89,7 +89,7 @@ export class UserService {
   }
 
   async updateUserPassword(id: number, updatePasswordDto: UpdatePasswordDto): Promise<User> {
-    const user = await this.userRepository.findOneBy({id});
+    const user = await this.userRepository.findOne({where:{id}});
     if (!user) {
      throw new NotFoundException(`No User with this id: ${id}`)
     }
@@ -107,5 +107,22 @@ export class UserService {
     return user;
   }
 
+
+  async updateResetCode(
+    email: string,
+    resetCode: string,
+    resetCodeExpiration: Date,
+    passwordResetVerified: boolean,
+  ): Promise<void> {
+    await this.userRepository.update(
+      { email },
+      {
+        resetCode,
+        resetCodeGeneratedAt: new Date(),
+        resetCodeExpiration,
+        passwordResetVerified
+      },
+    );
+    }
 }
 
