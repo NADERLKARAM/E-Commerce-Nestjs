@@ -1,6 +1,7 @@
 import { BrandService } from './brand.service';
 import { Brand } from './brand.entity';
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { BrandDto } from './dtos/brand.dto';
 
 @Controller('brands')
 export class BrandController {
@@ -17,13 +18,13 @@ export class BrandController {
   }
 
   @Post('create')
-  async create(@Body() brandData: Partial<Brand>): Promise<Brand> {
-    return this.brandService.create(brandData);
+  async create(@Body() brandDto: BrandDto): Promise<Brand> {
+    return this.brandService.create(brandDto);
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() brandData: Partial<Brand>): Promise<Brand> {
-    return this.brandService.update(id, brandData);
+  async update(@Param('id') id: number, @Body() brandDto: BrandDto): Promise<Brand> {
+    return this.brandService.update(id, brandDto);
   }
 
   @Delete(':id')

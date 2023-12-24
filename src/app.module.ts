@@ -7,8 +7,9 @@ import { CommonModule } from './auth/common/common.module';
 import { SubCategoryModule } from './sub-category/sub-category.module';
 import { CategoryModule } from './category/category.module';
 import { BrandModule } from './brand/brand.module';
+import { CouponModule } from './coupon/coupon.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DatabaseModule, UsersModule, AuthModule , CommonModule, CategoryModule, SubCategoryModule, BrandModule],
+  imports: [ConfigModule.forRoot(), DatabaseModule, UsersModule, AuthModule , CommonModule, CategoryModule, SubCategoryModule, BrandModule, CouponModule],
 })
 export class AppModule {}

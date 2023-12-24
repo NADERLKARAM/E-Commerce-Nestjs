@@ -1,3 +1,4 @@
+import { BrandDto } from './dtos/brand.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Brand } from './brand.entity';
@@ -17,13 +18,13 @@ export class BrandService {
     return this.brandRepository.findOneBy({id});
   }
 
-  async create(data: Partial<Brand>): Promise<Brand> {
-    const newBrand = this.brandRepository.create(data);
+  async create(brandDto: BrandDto): Promise<Brand> {
+    const newBrand = this.brandRepository.create(brandDto);
     return this.brandRepository.save(newBrand);
   }
 
-  async update(id: number, data: Partial<Brand>): Promise<Brand> {
-    await this.brandRepository.update(id, data);
+  async update(id: number, brandDto: BrandDto): Promise<Brand> {
+    await this.brandRepository.update(id, brandDto);
     return this.brandRepository.findOneBy({id});
   }
 
