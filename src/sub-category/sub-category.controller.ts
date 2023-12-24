@@ -2,7 +2,7 @@ import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException } fr
 import { SubCategoryService } from './sub-category.service';
 import { SubCategory } from './sub-category.entity';
 
-@Controller('subcategories')
+@Controller('categories/:categoryId/subcategories')
 export class SubCategoryController {
   constructor(private readonly subCategoryService: SubCategoryService) {}
 
