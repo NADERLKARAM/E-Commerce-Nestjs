@@ -9,8 +9,9 @@ import { CategoryModule } from './category/category.module';
 import { BrandModule } from './brand/brand.module';
 import { CouponModule } from './coupon/coupon.module';
 import { ProductModule } from './product/product.module';
+import { ReviewModule } from './review/review.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DatabaseModule, UsersModule, AuthModule , CommonModule, CategoryModule, SubCategoryModule, BrandModule, CouponModule, ProductModule],
+  imports: [ConfigModule.forRoot({}), DatabaseModule, UsersModule, AuthModule , CommonModule, CategoryModule, SubCategoryModule, BrandModule, CouponModule, ProductModule, ReviewModule],
 })
 export class AppModule {}

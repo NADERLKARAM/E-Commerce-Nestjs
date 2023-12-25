@@ -21,9 +21,9 @@ export class UserService {
 
         
     // Check if the email already exists in the database
-    const existingUser = await this.userRepository.findOne({ where: { email } });
+    const User = await this.userRepository.findOne({ where: { email } });
 
-    if (existingUser) {
+    if (User) {
       throw new ConflictException('Email already exists');
     }
         
@@ -34,6 +34,17 @@ export class UserService {
             password: hashedPassword,
         })
         return this.userRepository.save(user);
+    }
+
+
+    async findById(id: number): Promise<User> {
+      const user = await this.userRepository.findOneBy({id});
+  
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+  
+      return user;
     }
 
 

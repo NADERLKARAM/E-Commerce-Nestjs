@@ -17,7 +17,7 @@ import {
 // import { Role } from '../auth/common/guards/role.enum';
 // import { Roles } from 'src/auth/common/decorators/roles.decorator';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

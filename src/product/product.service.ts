@@ -13,11 +13,11 @@ export class ProductService {
   ) {}
 
   async findAll(): Promise<Product[]> {
-    return this.productRepository.find();
+    return this.productRepository.find({ relations: ['reviews'] });
   }
 
-  async findOne(id: number): Promise<Product> {
-    return this.productRepository.findOneBy({id});
+  async findOne(productId: number): Promise<Product> {
+    return this.productRepository.findOneBy({productId});
   }
 
   async create(createProductDto: CreateProductDto): Promise<Product> {
@@ -25,9 +25,9 @@ export class ProductService {
     return this.productRepository.save(product);
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto): Promise<Product> {
-    await this.productRepository.update(id, updateProductDto);
-    return this.productRepository.findOneBy({id});
+  async update(productId: number, updateProductDto: UpdateProductDto): Promise<Product> {
+    await this.productRepository.update(productId, updateProductDto);
+    return this.productRepository.findOneBy({productId});
   }
 
   async remove(id: number): Promise<void> {

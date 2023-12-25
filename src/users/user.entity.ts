@@ -1,5 +1,6 @@
 import { Role } from "src/auth/common/guards/role.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Review } from "src/review/review.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -38,5 +39,8 @@ export class User{
 
   @Column({ nullable: true })
   passwordResetVerified: boolean;
+
+  @OneToMany(() => Review, review => review.user)
+  reviews: Review[];
 
 }
