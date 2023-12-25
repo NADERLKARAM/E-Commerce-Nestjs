@@ -1,4 +1,3 @@
-
 export class CouponDto{
     code: string;
     discount: number;
