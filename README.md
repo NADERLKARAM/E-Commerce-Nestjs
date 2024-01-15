@@ -13,13 +13,6 @@ This repository contains the backend RESTful API for an E-commerce platform, bui
 
 # Features
 
-- Nest.js
-- PostgreSQL with TypeORM
-- JWT (JSON Web Tokens)
-- Multer (for file uploading)
-- Stripe API (for payment integration)
-- Other dependencies managed via npm/yarn
-
 # Product and Category Management:
 - CRUD operations for products and categories using TypeORM entities and Nest.js controllers.
 
