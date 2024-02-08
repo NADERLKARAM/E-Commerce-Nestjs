@@ -1,0 +1,13 @@
+# Exclude the old .env file
+.env
+
+# Exclude other files or directories if needed
+node_modules
+.git
+.vscode
+*.md
+*.yml
+*.yaml
+Dockerfile
+.dockerignore
+*.env

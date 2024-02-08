@@ -11,6 +11,7 @@ import { CouponModule } from './coupon/coupon.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 
+
 @Module({
   imports: [ConfigModule.forRoot({}), DatabaseModule, UsersModule, AuthModule , CommonModule, CategoryModule, SubCategoryModule, BrandModule, CouponModule, ProductModule, ReviewModule],
 })
