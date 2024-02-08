@@ -10,4 +10,7 @@ node_modules
 *.yaml
 Dockerfile
 .dockerignore
+
+.docker.env
 *.env
+.env.*
